@@ -31,17 +31,17 @@ class Phrase {
   }
 
   // Private methods
-  #getAvailableKeys() {
+  /*#getAvailableKeys() {
     const availableKeys = [];
     document
       .querySelectorAll("#qwerty .key")
       .forEach((keyElement) => availableKeys.push(keyElement.textContent));
     return availableKeys;
-  }
+  }*/
 
   #createPhraseHtml() {
     const phraseHtml = (items = "") => `<ul>${items}</ul>`;
-    const availableKeys = this.#getAvailableKeys();
+    const availableKeys = utils.getAvailableKeys();
     if (this.phrase) {
       const listItemsHtml = this.phrase
         .split("")
