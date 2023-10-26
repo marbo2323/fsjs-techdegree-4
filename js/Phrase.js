@@ -30,15 +30,6 @@ class Phrase {
     return this.phraseCotainer.querySelectorAll("li.letter.hide").length > 0;
   }
 
-  // Private methods
-  /*#getAvailableKeys() {
-    const availableKeys = [];
-    document
-      .querySelectorAll("#qwerty .key")
-      .forEach((keyElement) => availableKeys.push(keyElement.textContent));
-    return availableKeys;
-  }*/
-
   #createPhraseHtml() {
     const phraseHtml = (items = "") => `<ul>${items}</ul>`;
     const availableKeys = utils.getAvailableKeys();
