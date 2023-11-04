@@ -12,13 +12,13 @@ class Game {
       "Knowledge is power",
       "May the Force be with you",
       "The truth will set you free",
-      "Whatever you are, be a good one",
+      "Whatever you are be a good one",
       "You must be the change you wish to see in the world",
       "United we stand, divided we fall",
-      "To be or not to be, that is the question",
+      "To be or not to be that is the question",
       "The only thing we have to fear is fear itself",
       "The love of money is the root of all evil",
-    ];
+    ].map((phraseText) => new Phrase(phraseText));
     this.activePhrase = null;
     this.maxTries = document.querySelectorAll("#scoreboard li.tries").length;
     this.ovarlay = document.querySelector("#overlay");
@@ -32,7 +32,7 @@ class Game {
    * Start a new game with a random phrase
    */
   startGame() {
-    this.activePhrase = new Phrase(this.getRandomPhrase());
+    this.activePhrase = this.getRandomPhrase();
     this.activePhrase.addPhraseToDisplay();
     this.ovarlay.style.display = "none";
   }
