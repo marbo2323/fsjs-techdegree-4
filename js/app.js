@@ -6,7 +6,14 @@ const startGameButton = document.querySelector("#btn__reset");
 const onScreenKeyboard = document.querySelector("#qwerty");
 let currentGame = null;
 
+/**
+ * This object contains functions, that are used in several places in this app
+ */
 const utils = {
+  /**
+   * Returns the array of keys available on the on-screen keyboard
+   * @returns {Array<string>}
+   */
   getAvailableKeys: function () {
     const availableKeys = [];
     document
@@ -15,6 +22,11 @@ const utils = {
     return availableKeys;
   },
 
+  /**
+   * Returns the on-screen button HTML element by its text content
+   * @param {string} keyValue
+   * @returns {HTMLElement}
+   */
   getOnScreenKeyboardKey(keyValue) {
     const allButtons = document.querySelectorAll("#qwerty .key");
     let filteredButton = null;
@@ -27,11 +39,13 @@ const utils = {
   },
 };
 
+// Add event listener for Start Game button
 startGameButton.addEventListener("click", () => {
   currentGame = new Game();
   currentGame.startGame();
 });
 
+// Add event listener for on-screen keyboard
 onScreenKeyboard.addEventListener("click", (event) => {
   if (event.target.tagName === "BUTTON") {
     const buttonClicked = event.target;
@@ -39,12 +53,13 @@ onScreenKeyboard.addEventListener("click", (event) => {
   }
 });
 
+// Add event listener for external keyboard
 document.addEventListener("keyup", (event) => {
   const keyValue = event.key;
   if (utils.getAvailableKeys().includes(keyValue)) {
     const onScreeKeyboardButton = utils.getOnScreenKeyboardKey(keyValue);
     if (onScreeKeyboardButton) {
-      onScreeKeyboardButton.click();
+      currentGame.handleInteraction(onScreeKeyboardButton);
     }
   }
 });
