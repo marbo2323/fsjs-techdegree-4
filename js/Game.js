@@ -19,7 +19,7 @@ class Game {
       "The only thing we have to fear is fear itself",
       "The love of money is the root of all evil",
     ];
-    this.activePhrase = new Phrase(this.getRandomPhrase());
+    this.activePhrase = null;
     this.maxTries = document.querySelectorAll("#scoreboard li.tries").length;
     this.ovarlay = document.querySelector("#overlay");
     this.gameOwerMessage = document.querySelector("#game-over-message");
@@ -28,16 +28,28 @@ class Game {
     this.lostIcon = "images/lostHeart.png";
   }
 
+  /**
+   * Start a new game with a random phrase
+   */
   startGame() {
+    this.activePhrase = new Phrase(this.getRandomPhrase());
     this.activePhrase.addPhraseToDisplay();
     this.ovarlay.style.display = "none";
   }
 
+  /**
+   * Return a random phrase
+   * @returns {string}
+   */
   getRandomPhrase() {
     const randomIndex = Math.floor(Math.random() * this.phrases.length);
     return this.phrases[randomIndex];
   }
 
+  /**
+   * Remove life by changing icon and incrementing the missed property.
+   * Calls the gameOver method if there are no lives left.
+   */
   removeLife() {
     this.missed++;
     if (this.missed === this.maxTries) {
@@ -53,6 +65,9 @@ class Game {
     }
   }
 
+  /**
+   * Displays the result of the game.
+   */
   gameOver() {
     const resultMessage =
       this.missed === this.maxTries
@@ -63,10 +78,19 @@ class Game {
     this.ovarlay.style.display = "";
   }
 
+  /**
+   * Checks for win.
+   * If there are no unrevealed letters, the player wins.
+   * @returns {boolean}
+   */
   checkForWin() {
     return !this.activePhrase.hasUnrevealedLetters();
   }
 
+  /**
+   * Handles clicking on on-screen keyboard buttons.
+   * @param {HTMLElement} buttonClicked
+   */
   handleInteraction(buttonClicked) {
     const clickedLetter = buttonClicked.textContent;
     if (this.activePhrase.checkLetter(clickedLetter)) {
@@ -81,7 +105,7 @@ class Game {
     }
   }
 
-  // Private methods
+  // Private method for resetting the gameboard
   #resetGameBoard() {
     // resetting existing phrase
     const phraseContainerList =
