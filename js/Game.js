@@ -14,7 +14,7 @@ class Game {
       "The truth will set you free",
       "Whatever you are be a good one",
       "You must be the change you wish to see in the world",
-      "United we stand, divided we fall",
+      "United we stand divided we fall",
       "To be or not to be that is the question",
       "The only thing we have to fear is fear itself",
       "The love of money is the root of all evil",
