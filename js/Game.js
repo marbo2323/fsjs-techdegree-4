@@ -93,6 +93,7 @@ class Game {
    */
   handleInteraction(buttonClicked) {
     const clickedLetter = buttonClicked.textContent;
+    buttonClicked.disabled = true;
     if (this.activePhrase.checkLetter(clickedLetter)) {
       this.activePhrase.showMatchedLetter(clickedLetter);
       buttonClicked.className = "chosen";
@@ -115,9 +116,10 @@ class Game {
       .forEach((listItem) => phraseContainerList.removeChild(listItem));
 
     // resetting onscreen keyboard
-    document
-      .querySelectorAll("#qwerty button")
-      .forEach((button) => (button.className = "key"));
+    document.querySelectorAll("#qwerty button").forEach((button) => {
+      button.className = "key";
+      button.disabled = false;
+    });
 
     // resetting scoreboard
     this.scoreboard
