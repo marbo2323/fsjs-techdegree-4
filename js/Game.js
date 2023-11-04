@@ -76,6 +76,7 @@ class Game {
     this.gameOwerMessage.textContent = resultMessage;
     this.#resetGameBoard();
     this.ovarlay.style.display = "";
+    this.ovarlay.className = this.missed === this.maxTries ? "lose" : "win";
   }
 
   /**
